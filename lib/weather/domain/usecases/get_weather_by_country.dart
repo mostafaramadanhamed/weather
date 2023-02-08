@@ -3,7 +3,7 @@ import 'package:weatherc/weather/domain/repository/weather_repository.dart';
 
 class GetWeatherByCountryName{
 
-  final WeatherRepository repository;
+  final BaseWeatherRepository repository;
 
   GetWeatherByCountryName(this.repository);
 
