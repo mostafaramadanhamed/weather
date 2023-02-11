@@ -1,17 +1,14 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:weatherc/core/utils/constant.dart';
 import 'package:weatherc/weather/data/model/weather_model.dart';
 import 'package:dio/dio.dart';
 
 abstract class BaseRemoteDataSource {
-  Future<WeatherModel ?> getWeatherByCityName(String countryName);
+  Future<WeatherModel > getWeatherByCityName(String countryName);
 }
 
 class RemoteDataSource implements BaseRemoteDataSource {
   @override
-  Future<WeatherModel ?> getWeatherByCityName(String countryName) async {
+  Future<WeatherModel > getWeatherByCityName(String countryName) async {
     try {
       var response = await Dio().get(
         '${AppConstance.baseUrl}/weather?q=$countryName&appid=${AppConstance.apiKey}',
@@ -21,7 +18,7 @@ class RemoteDataSource implements BaseRemoteDataSource {
       return WeatherModel.fromJson(response.data);
     } catch (e) {
      print(e);
-      return null;
+      return WeatherModel(0, 'null', 'null', 'null', 0);
     }
   }
 }
